@@ -5,8 +5,47 @@
           <div class="panel-heading">
               Contacts
           </div>
-          <div class="panel-body">
-             <div class="panel-body">{{message}}</div>
+           <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" [(ngModel)]="keyWord" class="  search-query form-control" placeholder="Search" />
+                                <span class="input-group-btn">
+                                    <button (click)="search()" class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+          <div  class="panel-body">
+             
+              <table class="table table-striped">
+                  <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                  </tr>
+
+
+                  <tr *ngFor="let contact of contacts?.content">
+                    <td>{{contact.id}}</td>
+                    <td>{{contact.fname}}</td>
+                    <td>{{contact.lname}}</td>
+                    <td>{{contact.email}}</td>
+                    <td><a (click)="onEditContact(contact.id)" class="clickable">Edit</a></td>
+                    <td><a (click)="onDeleteContact(contact)" class="clickable">Delete</a></td>
+                  </tr>
+
+              </table>
+
+              <div class="container">
+                <ul class="nav nav-pills" >
+                  <li [ngClass]="{'active': i === currentPage}" *ngFor="let p of pages; let i=index">
+                    <a  class="clickable" (click)="getPage(i)">{{i}}</a>
+                  </li>
+                </ul>
+              </div> 
+            
+              </div>      
           </div>
          
         </div>

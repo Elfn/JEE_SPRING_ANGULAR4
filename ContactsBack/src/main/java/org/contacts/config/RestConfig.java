@@ -11,7 +11,7 @@ public class RestConfig {
 	/**
 	 * @author Elimane Fofana
 	 *
-	 * 
+	 * @Cross_Origin_Resources_Sharing To allow access from another domain 
 	 */
 
     @Bean
@@ -25,6 +25,7 @@ public class RestConfig {
         config.addAllowedMethod("GET");
         config.addAllowedMethod("PUT");
         config.addAllowedMethod("POST");
+        config.addAllowedMethod("DELETE");
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
